@@ -1,0 +1,37 @@
+import matplotlib.pyplot as plt
+import numpy as np
+import torch
+import torch.nn.functional as F
+
+from sklearn import datasets
+from sklearn import preprocessing
+from sklearn.model_selection import train_test_split
+from collections import Counter
+
+from sklearn.linear_model import LogisticRegression
+
+iris = datasets.load_iris()
+
+iris = datasets.load_iris()
+
+X = iris.data[:-50, :2]
+
+X = preprocessing.scale(X)
+y = iris.target[:-50]
+
+print(Counter(y))
+print(list(iris.target_names[:-1]))
+print(X.shape)
+plt.scatter(X[:, 0], X[:, 1], c=y);
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2)
+print(f'X train size: {X_train.shape}')
+print(f'X test size: {X_test.shape}')
+print(f'y train size: {y_train.shape}')
+print(f'y test size: {y_test.shape}')
+print(Counter(y_train))
+clf = LogisticRegression()
+
+model = clf.fit(X_train, y_train)
+
+model.predict(X_test)
+print("Accuracy: ", model.score(X_test, y_test) * 100)

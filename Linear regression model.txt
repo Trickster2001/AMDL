@@ -1,0 +1,23 @@
+import matplotlib.pyplot as plt
+import numpy as np
+import torch
+import torch.nn.functional as F
+
+from sklearn import datasets
+from sklearn import preprocessing
+from sklearn.model_selection import train_test_split
+from collections import Counter
+
+from sklearn.linear_model import LogisticRegression
+
+iris = datasets.load_iris()
+
+iris = datasets.load_iris()
+
+X = iris.data[:-50, :2]
+
+X = preprocessing.scale(X)
+y = iris.target[:-50]
+
+print(Counter(y))
+print(list(iris.target_names[:-1]))
